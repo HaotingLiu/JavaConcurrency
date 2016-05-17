@@ -8,20 +8,21 @@ import java.util.concurrent.Future;
 
 public class ExecutorsHandler {
 	
-private static final int NO_OF_TASKS = 10;
+private static final int NO_OF_TASKS = 100;
 	
-	public static void main_old(String [] a){
+	public static void main(String [] a){
 		
 		//Create a concurrency handler first
 		ExecutorService executorSerivce = Executors.newFixedThreadPool(10);
 		ArrayList<Future<?>> futures = new ArrayList<Future<?>>();
 		
 		//Create 100 tasks fist;
-//		TaskRunnable [] tasks = new TaskRunnable[NO_OF_TASKS];
-		TaskCallable [] tasks = new TaskCallable[NO_OF_TASKS];
+		TaskRunnable [] tasks = new TaskRunnable[NO_OF_TASKS];
+		//TaskCallable [] tasks = new TaskCallable[NO_OF_TASKS];
 		
 		for(int i = 0 ; i < NO_OF_TASKS ; ++i)
-			tasks[i] = new TaskCallable(); //tasks[i] = new TaskRunnable();
+			//tasks[i] = new TaskCallable();
+			tasks[i] = new TaskRunnable();
 		
 		System.out.println("Created " + NO_OF_TASKS + " tasks.. Submitting..");
 		
@@ -35,7 +36,8 @@ private static final int NO_OF_TASKS = 10;
 		do {
 			for(int i = 0 ; i < NO_OF_TASKS ; ++i){
 				try {
-					if((Boolean)futures.get(i).get())
+					if(!futures.get(i).get().equals(0))
+						System.out.println("the result of this thread is" + futures.get(i).get());
 						completedTasks++;
 				} catch (InterruptedException e) {
 					e.printStackTrace();
