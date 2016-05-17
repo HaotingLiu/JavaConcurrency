@@ -17,12 +17,11 @@ private static final int NO_OF_TASKS = 100;
 		ArrayList<Future<?>> futures = new ArrayList<Future<?>>();
 		
 		//Create 100 tasks fist;
-		TaskRunnable [] tasks = new TaskRunnable[NO_OF_TASKS];
-		//TaskCallable [] tasks = new TaskCallable[NO_OF_TASKS];
+//		TaskRunnable [] tasks = new TaskRunnable[NO_OF_TASKS];
+		TaskCallable [] tasks = new TaskCallable[NO_OF_TASKS];
 		
 		for(int i = 0 ; i < NO_OF_TASKS ; ++i)
-			//tasks[i] = new TaskCallable();
-			tasks[i] = new TaskRunnable();
+			tasks[i] = new TaskCallable(); //tasks[i] = new TaskRunnable();
 		
 		System.out.println("Created " + NO_OF_TASKS + " tasks.. Submitting..");
 		
